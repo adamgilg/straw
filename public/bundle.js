@@ -46,15 +46,15 @@
 
 	var React = __webpack_require__(1);
 	var ReactDom = __webpack_require__(32);
+	var List = __webpack_require__(166);
 
 	var Main = React.createClass({
 	  displayName: 'Main',
 
 	  render: function () {
-	    return React.createElement(
-	      'div',
-	      null,
-	      'React running!'
+	    return(
+	      // <div>React running!</div>
+	      React.createElement(List, null)
 	    );
 	  }
 	});
@@ -20015,6 +20015,87 @@
 	var ReactMount = __webpack_require__(156);
 
 	module.exports = ReactMount.renderSubtreeIntoContainer;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Movie = __webpack_require__(167);
+
+	var List = React.createClass({
+	  displayName: 'List',
+
+	  getInitialState: function () {
+	    return {
+	      movieData: [{
+	        title: 'Con Air',
+	        year: '1997',
+	        description: 'Much convict. Very explosion. Such plane. Wow.',
+	        score: '99%',
+	        imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
+	      }, {
+	        title: 'Con Air',
+	        year: '1997',
+	        description: 'Much convict. Very explosion. Such plane. Wow.',
+	        score: '99%',
+	        imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
+	      }, {
+	        title: 'Con Air',
+	        year: '1997',
+	        description: 'Much convict. Very explosion. Such plane. Wow.',
+	        score: '99%',
+	        imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
+	      }]
+	    };
+	  },
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      null,
+	      this.state.movieData.map(function (movie, index) {
+	        return React.createElement(Movie, { key: index, movie: movie });
+	      })
+	    );
+	  }
+	});
+
+	module.exports = List;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var Movie = React.createClass({
+	  displayName: "Movie",
+
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "movie-pane" },
+	      React.createElement(
+	        "h1",
+	        null,
+	        this.props.movie.title
+	      ),
+	      React.createElement(
+	        "div",
+	        null,
+	        this.props.movie.description
+	      ),
+	      React.createElement(
+	        "div",
+	        null,
+	        this.props.movie.score
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Movie;
 
 /***/ }
 /******/ ]);
