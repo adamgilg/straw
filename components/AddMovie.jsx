@@ -39,10 +39,6 @@ var AddMovie = React.createClass({
       if (response.status >= 400) {
         throw new Error("Bad response from server");
       }
-      console.log(response);
-      // return response.json();
-    // }).then(function(response) {
-    //   console.log(response);
     });
   },
 

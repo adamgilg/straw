@@ -20068,28 +20068,53 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	__webpack_require__(172);
 
 	var Movie = React.createClass({
-	  displayName: "Movie",
+	  displayName: 'Movie',
+
+	  confirmDeleteMovie: function () {
+	    var confirmDelete = confirm('clicked');
+	    if (confirmDelete) {
+	      this.deleteMovie();
+	    }
+	  },
+
+	  deleteMovie: function () {
+	    fetch('data/' + this.props.movie.title, {
+	      method: 'DELETE'
+	    }).then(function (response) {
+	      if (response.status >= 400) {
+	        throw new Error("Bad response from server");
+	      }
+
+	      console.log('Successful response', response);
+	    });
+	  },
 
 	  render: function () {
 	    return React.createElement(
-	      "div",
-	      { className: "movie-pane" },
+	      'div',
+	      { className: 'movie-pane' },
 	      React.createElement(
-	        "h1",
+	        'h1',
 	        null,
 	        this.props.movie.title
 	      ),
 	      React.createElement(
-	        "div",
+	        'div',
 	        null,
 	        this.props.movie.year
 	      ),
 	      React.createElement(
-	        "div",
+	        'div',
 	        null,
 	        this.props.movie.description
+	      ),
+	      React.createElement(
+	        'div',
+	        { onClick: this.confirmDeleteMovie },
+	        'Delete'
 	      )
 	    );
 	  }
@@ -20101,7 +20126,7 @@
 /* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;var require;/* WEBPACK VAR INJECTION */(function(process, global, module) {/*!
+	var require;var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, global, module) {/*!
 	 * @overview es6-promise - a tiny implementation of Promises/A+.
 	 * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
 	 * @license   Licensed under MIT license
@@ -21541,10 +21566,6 @@
 	      if (response.status >= 400) {
 	        throw new Error("Bad response from server");
 	      }
-	      console.log(response);
-	      // return response.json();
-	      // }).then(function(response) {
-	      //   console.log(response);
 	    });
 	  },
 

@@ -35,6 +35,20 @@ app.get('/data/:title', function(req, res) {
   })
 });
 
+app.delete('/data/:title', function(req, res) {
+  var title = req.params.title;
+
+  Movie.findOne({title: title}).remove(function(err, movie) {
+    if (err) {
+      res.status(500);
+    } else {
+      res.status(200);
+    }
+
+    res.send();
+  });
+});
+
 app.post('/data/addmovie', function(req, res) {
   console.log('REQ.BODY', req.body);
   var newMovie = new Movie({
@@ -49,37 +63,12 @@ app.post('/data/addmovie', function(req, res) {
     } else {
       res.status(200);
     }
+
+    res.send();
   });
-  res.send();
 })
 
 var server = app.listen(app.get('port'), function() {
   var port = server.address().port;
   console.log('Server running on port:', port);
 });
-
-var movieData =  {
-  movies: [
-    {
-      title: 'ConAir',
-      year: '1997',
-      description: 'Much convict. Very explosion. Such plane. Wow.',
-      score: '99%',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
-    },
-    {
-      title: 'KantAir',
-      year: '1997',
-      description: 'Much convict. Very explosion. Such plane. Wow.',
-      score: '99%',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
-    },
-    {
-      title: 'ConnieAir',
-      year: '1997',
-      description: 'Much convict. Very explosion. Such plane. Wow.',
-      score: '99%',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
-    }
-  ]
-};
