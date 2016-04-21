@@ -1,12 +1,15 @@
 var React = require('react');
 var ReactDom = require('react-dom');
 var List = require('./List.jsx');
+var AddMovie = require('./AddMovie.jsx');
 
 var Main = React.createClass({
   render: function() {
     return (
-      // <div>React running!</div>
-      <List />
+      <div>
+        <List />
+        <AddMovie />
+      </div>
     )
   }
 });

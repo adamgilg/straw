@@ -6,12 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "webpack --watch | nodemon server.js"
+    "dev": "webpack --watch | mongod | nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "es6-promise": "^3.1.2",
     "express": "^4.13.4",
+    "isomorphic-fetch": "^2.2.1",
+    "mongoose": "^4.4.12",
     "react": "^15.0.1",
     "react-dom": "^15.0.1"
   },

@@ -1,33 +1,28 @@
 var React = require('react');
 var Movie = require('./Movie.jsx');
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 var List = React.createClass({
   getInitialState: function() {
     return {
-      movieData: [
-          {
-            title: 'Con Air',
-            year: '1997',
-            description: 'Much convict. Very explosion. Such plane. Wow.',
-            score: '99%',
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
-          },
-          {
-            title: 'Con Air',
-            year: '1997',
-            description: 'Much convict. Very explosion. Such plane. Wow.',
-            score: '99%',
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
-          },
-          {
-            title: 'Con Air',
-            year: '1997',
-            description: 'Much convict. Very explosion. Such plane. Wow.',
-            score: '99%',
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg'
-          },
-      ]
+      movieData: []
     }
+  },
+
+  componentWillMount: function() {
+    var that = this;
+    fetch('/data/movies')
+      .then(function(response) {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      })
+      .then(function(movieResponse) {
+        that.setState({ movieData: movieResponse });
+        console.log(that.state);
+      });
   },
 
   render: function() {
