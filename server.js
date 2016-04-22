@@ -35,10 +35,11 @@ app.get('/data/:title', function(req, res) {
   })
 });
 
-app.delete('/data/:title', function(req, res) {
-  var title = req.params.title;
+app.delete('/data/:id', function(req, res) {
+  var id = req.params.id;
 
-  Movie.findOne({title: title}).remove(function(err, movie) {
+  Movie.findOne({_id: id}).remove(function(err, movie) {
+    console.log('DELETED: ', movie);
     if (err) {
       res.status(500);
     } else {

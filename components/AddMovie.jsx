@@ -44,7 +44,7 @@ var AddMovie = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="col-1-3 add-movie">
         <form style={{display: this.state.submitting ? 'none' : 'block' }}>
           <div>
             <label for="title">Title</label>

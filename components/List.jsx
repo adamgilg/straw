@@ -27,7 +27,7 @@ var List = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="col-2-3">
         {this.state.movieData.map(function(movie, index){
           return <Movie key={index} movie={movie}/>;
         })}

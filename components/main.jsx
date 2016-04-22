@@ -6,7 +6,7 @@ var AddMovie = require('./AddMovie.jsx');
 var Main = React.createClass({
   render: function() {
     return (
-      <div>
+      <div className="grid">
         <List />
         <AddMovie />
       </div>

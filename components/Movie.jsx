@@ -10,7 +10,7 @@ var Movie = React.createClass({
   },
 
   deleteMovie: function() {
-    fetch('data/' + this.props.movie.title, {
+    fetch('data/' + this.props.movie._id, {
       method: 'DELETE'
     }).then(function(response) {
       if (response.status >= 400) {
@@ -23,11 +23,16 @@ var Movie = React.createClass({
 
   render: function() {
     return (
-      <div className="movie-pane">
-        <h1>{this.props.movie.title}</h1>
-        <div>{this.props.movie.year}</div>
-        <div>{this.props.movie.description}</div>
-        <div onClick={this.confirmDeleteMovie}>Delete</div>
+      <div className="movie-pane grid">
+        <div className="col-2-3">
+          <div>{this.props.movie.title}</div>
+          <div>{this.props.movie.year}</div>
+          <div>{this.props.movie.description}</div>
+          <button onClick={this.confirmDeleteMovie}>Delete</button>
+        </div>
+        <div className="col-1-3 movie-image-wrapper">
+          <img className="movie-image" src="https://upload.wikimedia.org/wikipedia/en/1/1d/Conairinternational.jpg"></img>
+        </div>
       </div>
     )
   }
